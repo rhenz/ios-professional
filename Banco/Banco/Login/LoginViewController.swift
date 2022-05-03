@@ -37,14 +37,14 @@ extension LoginViewController {
         titleLabel.textAlignment = .center
         titleLabel.font = UIFont.preferredFont(forTextStyle: .largeTitle)
         titleLabel.adjustsFontForContentSizeCategory = true
-        titleLabel.text = "Bankey"
+        titleLabel.text = "Banco"
         
         subtitleLabel.translatesAutoresizingMaskIntoConstraints = false
         subtitleLabel.textAlignment = .center
         subtitleLabel.font = UIFont.preferredFont(forTextStyle: .title3)
         subtitleLabel.adjustsFontForContentSizeCategory = true
         subtitleLabel.numberOfLines = 0
-        subtitleLabel.text = "Your premium source for all things banking!"
+        subtitleLabel.text = "We find ways..."
         
         loginView.translatesAutoresizingMaskIntoConstraints = false
         
