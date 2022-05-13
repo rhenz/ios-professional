@@ -7,8 +7,7 @@
 
 import Foundation
 
-public class LocalState {
-    
+public enum LocalState {
     private static let defaults = UserDefaults.standard
     
     private enum Keys: String {
