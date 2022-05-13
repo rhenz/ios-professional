@@ -8,7 +8,7 @@
 import UIKit
 
 class OnboardingViewController: UIViewController {
-    // MARK: - Stored Properties
+    // MARK: - Properties
     let stackView = UIStackView()
     let imageView = UIImageView()
     let label = UILabel()
@@ -27,7 +27,7 @@ class OnboardingViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - View Lifecycle
+    // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         style()

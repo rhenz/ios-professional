@@ -45,19 +45,12 @@ class MainViewController: UITabBarController {
     
     private func setupTabBar() {
         tabBar.tintColor = appColor
-        tabBar.isTranslucent = false
+        tabBar.isTranslucent = true
     }
     
 }
 
-
-class AccountSummaryViewController: UIViewController {
-    override func viewDidLoad() {
-        view.backgroundColor = .systemGreen
-    }
-}
-
-
+// MARK: - Dummy VCs
 class MoneyViewController: UIViewController {
     override func viewDidLoad() {
         view.backgroundColor = .systemOrange

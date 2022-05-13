@@ -58,7 +58,7 @@ class OnboardingContainerViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - View Lifecycle
+    // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
@@ -66,7 +66,7 @@ class OnboardingContainerViewController: UIViewController {
         layout()
     }
     
-    // MARK: - Private Methods
+    // MARK: - Helper Methods
     private func setup() {
         view.backgroundColor = .systemPurple
         
@@ -91,7 +91,10 @@ class OnboardingContainerViewController: UIViewController {
         doneButton.isHidden = true
         backButton.isHidden = true
     }
-    
+}
+
+// MARK: - UI
+extension OnboardingContainerViewController {
     private func style() {
         view.addSubview(closeButton)
         closeButton.translatesAutoresizingMaskIntoConstraints = false
