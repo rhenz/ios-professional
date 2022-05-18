@@ -20,37 +20,52 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     // MARK: -
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = scene as? UIWindowScene else { return }
+        self.window = UIWindow(windowScene: windowScene)
         
+        // Set Delegates
         loginViewController.delegate = self
         onboardingViewController.delegate = self
         
+        // Display Login
+        displayLogin()
+    }
+    
+    private func displayLogin() {
+        setRootViewController(loginViewController, animated: false)
+    }
+    
+    private func displayNextScreen() {
+        if LocalState.hasOnboarded {
+            prepMainView()
+            setRootViewController(mainViewController)
+        } else {
+            setRootViewController(onboardingViewController)
+        }
+    }
+    
+    private func prepMainView() {
+        // Set Status Bar Appearance
+        mainViewController.setStatusBar()
+        
+        // Set Navigation Bar Color
         UINavigationBar.appearance().isTranslucent = false
         UINavigationBar.appearance().backgroundColor = appColor
-        
-        self.window = UIWindow(windowScene: windowScene)
-        
-        mainViewController.setStatusBar()
-        self.window?.rootViewController = mainViewController
-        self.window?.makeKeyAndVisible()
     }
 }
 
 // MARK: - LoginViewControllerDelegate
 extension SceneDelegate: LoginViewControllerDelegate {
     func didLogin() {
-        if LocalState.hasOnboarded {
-            setRootViewController(mainViewController)
-        } else {
-            setRootViewController(onboardingViewController)
-        }
+        displayNextScreen()
     }
 }
 
 // MARK: - OnboardingViewController Delegate
 extension SceneDelegate: OnboardingContainerViewControllerDelegate {
     func didFinishOnboarding() {
-        setRootViewController(mainViewController)
         LocalState.hasOnboarded = true
+        prepMainView()
+        setRootViewController(mainViewController)
     }
 }
 
@@ -69,6 +84,7 @@ extension SceneDelegate {
         else {
             self.window?.rootViewController = vc
             self.window?.makeKeyAndVisible()
+            self.window?.backgroundColor = .systemBackground
             return
         }
         
