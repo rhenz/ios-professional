@@ -9,14 +9,14 @@ import UIKit
 
 class DummyViewController: UIViewController {
     
-    // MARK: - Store Properties
+    // MARK: - Properties
     let stackView = UIStackView()
     let label = UILabel()
     let logoutButton = UIButton(type: .system)
     
     weak var logoutDelegate: LogoutDelegate?
 
-    // MARK: - View Lifecycle
+    // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -26,7 +26,7 @@ class DummyViewController: UIViewController {
 }
 
 
-// MARK: - Methods
+// MARK: - UI
 extension DummyViewController {
     private func style() {
         stackView.translatesAutoresizingMaskIntoConstraints = false

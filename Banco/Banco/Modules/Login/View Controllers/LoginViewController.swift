@@ -17,7 +17,7 @@ protocol LogoutDelegate: AnyObject {
 
 class LoginViewController: UIViewController {
     
-    // MARK: - Stored Properties
+    // MARK: - Properties
     let titleLabel = UILabel()
     let subtitleLabel = UILabel()
     let loginView = LoginView()
@@ -34,7 +34,7 @@ class LoginViewController: UIViewController {
         loginView.passwordTextField.text
     }
     
-    // MARK: - View Lifecycle
+    // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         style()
@@ -47,7 +47,7 @@ class LoginViewController: UIViewController {
     }
 }
 
-
+// MARK: - UI
 extension LoginViewController {
     private func style() {
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
