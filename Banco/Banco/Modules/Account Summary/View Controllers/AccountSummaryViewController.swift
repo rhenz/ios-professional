@@ -9,20 +9,16 @@ import UIKit
 
 class AccountSummaryViewController: UIViewController {
     
+    // MARK: - 
     struct Profile {
         let firstName: String
         let lastName: String
     }
     
+    // MARK: - Properties
     var profile: Profile?
     var accounts: [AccountSummaryCell.ViewModel] = []
-    
-    // MARK: - Properties
-    private let games = ["Pacman", "Space Invaders", "Space Patrol"]
-    private let cellIdentifier = "AccountCell"
-    
     private let tableView = UITableView()
-    
     
     // MARK: - View Life Cycle
     override func viewDidLoad() {
@@ -33,7 +29,15 @@ class AccountSummaryViewController: UIViewController {
     
     // MARK: - Helper Methods
     private func setupViews() {
+        // Set View's Background Color
         self.view.backgroundColor = .systemBackground
+        
+        // Add Bar Button Item
+        let logoutButton = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logoutTapped))
+        logoutButton.tintColor = .label
+        navigationItem.rightBarButtonItem = logoutButton
+        
+        // Setup Table View
         setupTableView()
         setupTableHeaderView()
     }
@@ -66,6 +70,14 @@ class AccountSummaryViewController: UIViewController {
         size.width = UIScreen.main.bounds.width
         header.frame.size = size
         tableView.tableHeaderView = header
+    }
+}
+
+
+// MARK: - Actions
+extension AccountSummaryViewController {
+    @objc private func logoutTapped(_ sender: UIBarButtonItem) {
+        NotificationCenter.default.post(name: .logout, object: nil)
     }
 }
 

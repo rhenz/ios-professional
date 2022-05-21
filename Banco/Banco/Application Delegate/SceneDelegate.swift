@@ -26,8 +26,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         loginViewController.delegate = self
         onboardingViewController.delegate = self
         
+        // Register for Notifications
+        registerForNotifications()
+        
         // Display Login
         displayLogin()
+    }
+    
+    private func registerForNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(didLogout), name: .logout, object: nil)
     }
     
     private func displayLogin() {
@@ -71,6 +78,7 @@ extension SceneDelegate: OnboardingContainerViewControllerDelegate {
 
 // MARK: - LogoutDelegate
 extension SceneDelegate: LogoutDelegate {
+    @objc
     func didLogout() {
         setRootViewController(loginViewController)
     }
