@@ -21,6 +21,7 @@
 		C9A9F49C28380A8F00BA5728 /* NSNotificationName.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A9F49B28380A8F00BA5728 /* NSNotificationName.swift */; };
 		C9A9F49E28380D5500BA5728 /* UITextField+SecureToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A9F49D28380D5500BA5728 /* UITextField+SecureToggle.swift */; };
 		C9AEADD5282F757800DEBEB3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9AEADD4282F757800DEBEB3 /* SceneDelegate.swift */; };
+		C9C50CD1283AA0790094EA47 /* UIButton+Shake.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C50CD0283AA0790094EA47 /* UIButton+Shake.swift */; };
 		C9DAC897282FF4C4000EB215 /* AccountSummaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9DAC896282FF4C4000EB215 /* AccountSummaryCell.swift */; };
 		C9F8D4682833F0C4007BAE84 /* CurrencyFormatterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F8D4672833F0C4007BAE84 /* CurrencyFormatterTest.swift */; };
 		C9FF53E428242C850024FE7F /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FF53E328242C850024FE7F /* OnboardingViewController.swift */; };
@@ -56,6 +57,7 @@
 		C9A9F49B28380A8F00BA5728 /* NSNotificationName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSNotificationName.swift; sourceTree = "<group>"; };
 		C9A9F49D28380D5500BA5728 /* UITextField+SecureToggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+SecureToggle.swift"; sourceTree = "<group>"; };
 		C9AEADD4282F757800DEBEB3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		C9C50CD0283AA0790094EA47 /* UIButton+Shake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Shake.swift"; sourceTree = "<group>"; };
 		C9DAC896282FF4C4000EB215 /* AccountSummaryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSummaryCell.swift; sourceTree = "<group>"; };
 		C9F8D45E2833F020007BAE84 /* BancoUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BancoUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9F8D4672833F0C4007BAE84 /* CurrencyFormatterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyFormatterTest.swift; sourceTree = "<group>"; };
@@ -166,6 +168,7 @@
 			children = (
 				C9A9F49D28380D5500BA5728 /* UITextField+SecureToggle.swift */,
 				C94B8ADB282D6CE70074A75E /* UIViewController+Utils.swift */,
+				C9C50CD0283AA0790094EA47 /* UIButton+Shake.swift */,
 				C984372928315C9600633CA6 /* CurrencyFormatter.swift */,
 			);
 			path = Utils;
@@ -358,6 +361,7 @@
 				C9214DF328204D980099FEF2 /* AppDelegate.swift in Sources */,
 				C937F4612822E2800038AB65 /* OnboardingContainerViewController.swift in Sources */,
 				C9AEADD5282F757800DEBEB3 /* SceneDelegate.swift in Sources */,
+				C9C50CD1283AA0790094EA47 /* UIButton+Shake.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
