@@ -22,6 +22,8 @@
 		C9A9F49E28380D5500BA5728 /* UITextField+SecureToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A9F49D28380D5500BA5728 /* UITextField+SecureToggle.swift */; };
 		C9AEADD5282F757800DEBEB3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9AEADD4282F757800DEBEB3 /* SceneDelegate.swift */; };
 		C9C50CD1283AA0790094EA47 /* UIButton+Shake.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C50CD0283AA0790094EA47 /* UIButton+Shake.swift */; };
+		C9C50CD4283AA17C0094EA47 /* ShakeyBellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C50CD3283AA17C0094EA47 /* ShakeyBellView.swift */; };
+		C9C50CD6283AA2950094EA47 /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C50CD5283AA2950094EA47 /* Styles.swift */; };
 		C9DAC897282FF4C4000EB215 /* AccountSummaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9DAC896282FF4C4000EB215 /* AccountSummaryCell.swift */; };
 		C9F8D4682833F0C4007BAE84 /* CurrencyFormatterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F8D4672833F0C4007BAE84 /* CurrencyFormatterTest.swift */; };
 		C9FF53E428242C850024FE7F /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FF53E328242C850024FE7F /* OnboardingViewController.swift */; };
@@ -58,6 +60,8 @@
 		C9A9F49D28380D5500BA5728 /* UITextField+SecureToggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+SecureToggle.swift"; sourceTree = "<group>"; };
 		C9AEADD4282F757800DEBEB3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		C9C50CD0283AA0790094EA47 /* UIButton+Shake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Shake.swift"; sourceTree = "<group>"; };
+		C9C50CD3283AA17C0094EA47 /* ShakeyBellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShakeyBellView.swift; sourceTree = "<group>"; };
+		C9C50CD5283AA2950094EA47 /* Styles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Styles.swift; sourceTree = "<group>"; };
 		C9DAC896282FF4C4000EB215 /* AccountSummaryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSummaryCell.swift; sourceTree = "<group>"; };
 		C9F8D45E2833F020007BAE84 /* BancoUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BancoUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9F8D4672833F0C4007BAE84 /* CurrencyFormatterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyFormatterTest.swift; sourceTree = "<group>"; };
@@ -109,6 +113,7 @@
 				C9214E28282057E90099FEF2 /* Application Delegate */,
 				C9A9F49F28380D9500BA5728 /* Configuration */,
 				C94B8AD8282D5EC30074A75E /* Utils */,
+				C9C50CD2283AA1640094EA47 /* Views */,
 				C937F45E2822DE7E0038AB65 /* Modules */,
 				C9214E26282057990099FEF2 /* Supporting Files */,
 			);
@@ -187,8 +192,17 @@
 			children = (
 				C9A9F49B28380A8F00BA5728 /* NSNotificationName.swift */,
 				C94B8AD9282D5F060074A75E /* LocalState.swift */,
+				C9C50CD5283AA2950094EA47 /* Styles.swift */,
 			);
 			path = Configuration;
+			sourceTree = "<group>";
+		};
+		C9C50CD2283AA1640094EA47 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C9C50CD3283AA17C0094EA47 /* ShakeyBellView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		C9F8D45F2833F020007BAE84 /* BancoUnitTests */ = {
@@ -347,6 +361,7 @@
 			files = (
 				C94B8ADC282D6CE70074A75E /* UIViewController+Utils.swift in Sources */,
 				C9DAC897282FF4C4000EB215 /* AccountSummaryCell.swift in Sources */,
+				C9C50CD4283AA17C0094EA47 /* ShakeyBellView.swift in Sources */,
 				C9214E2A282057FA0099FEF2 /* LoginView.swift in Sources */,
 				C94B8ADA282D5F060074A75E /* LocalState.swift in Sources */,
 				C9A9F49E28380D5500BA5728 /* UITextField+SecureToggle.swift in Sources */,
@@ -357,6 +372,7 @@
 				C9214DF728204D980099FEF2 /* LoginViewController.swift in Sources */,
 				C9FF53E428242C850024FE7F /* OnboardingViewController.swift in Sources */,
 				C94B8ADE282D6F240074A75E /* MainViewController.swift in Sources */,
+				C9C50CD6283AA2950094EA47 /* Styles.swift in Sources */,
 				C9FFF645282EA40500278313 /* AccountSummaryViewController.swift in Sources */,
 				C9214DF328204D980099FEF2 /* AppDelegate.swift in Sources */,
 				C937F4612822E2800038AB65 /* OnboardingContainerViewController.swift in Sources */,

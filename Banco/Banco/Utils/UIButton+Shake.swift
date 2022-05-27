@@ -9,6 +9,8 @@ import Foundation
 import UIKit
 
 extension UIButton {
+    
+    // This method shakes button left & right
     public func shakeButton() {
         let animation = CAKeyframeAnimation()
         animation.keyPath = "position.x"

@@ -12,6 +12,9 @@ class AccountSummaryHeaderView: UIView {
     @IBOutlet var contentView: UIView!
     @IBOutlet weak var dateLabel: UILabel!
     
+    // MARK: - Properties
+    let shakeyBellView = ShakeyBellView()
+    
     // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -31,14 +34,31 @@ class AccountSummaryHeaderView: UIView {
     private func commonInit() {
         let bundle = Bundle(for: AccountSummaryHeaderView.self)
         bundle.loadNibNamed(String(describing: type(of: self)), owner: self)
+        
+        // Setup Content View
         addSubview(contentView)
         contentView.backgroundColor = appColor
-
         contentView.translatesAutoresizingMaskIntoConstraints = false
-        contentView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-        contentView.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
-        contentView.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
-        contentView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        
+        NSLayoutConstraint.activate([
+            contentView.topAnchor.constraint(equalTo: self.topAnchor),
+            contentView.leftAnchor.constraint(equalTo: self.leftAnchor),
+            contentView.rightAnchor.constraint(equalTo: self.rightAnchor),
+            contentView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+        ])
+        
+        // Setup Shakey Bell View
+        addSubview(shakeyBellView)
+        shakeyBellView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            shakeyBellView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            shakeyBellView.bottomAnchor.constraint(equalTo: bottomAnchor)
+        ])
+    }
+    
+    private func setupShakeyBell() {
+        
     }
     
 }
