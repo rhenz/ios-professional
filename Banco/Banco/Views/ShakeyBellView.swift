@@ -11,9 +11,7 @@ class ShakeyBellView: UIView {
     
     // MARK: - Properties
     let imageView = UIImageView()
-    
     let buttonView = UIButton()
-    
     let buttonHeight: CGFloat = 16
     
     override var intrinsicContentSize: CGSize {
@@ -79,14 +77,21 @@ extension ShakeyBellView {
 }
 
 // MARK: - Actions
+fileprivate enum ShakeyBellViewConstants {
+    
+    // Bell Animation Constants
+    static let endAngle: CGFloat = .pi/8 // 22.5 degrees
+    static let numberOfFrames: Double = 6
+    static let duration = 1.0
+    
+}
 extension ShakeyBellView {
     @objc func imageViewTapped(_ recognizer: UITapGestureRecognizer) {
-        shakeWith(duration: 1.0, angle: .pi/8, yOffset: 0.0)
+        shakeWith(duration: ShakeyBellViewConstants.duration, angle: ShakeyBellViewConstants.endAngle, yOffset: 0.0)
     }
     
     private func shakeWith(duration: Double, angle: CGFloat, yOffset: CGFloat) {
-        let numberOfFrames: Double = 6
-        let frameDuration = Double(1/numberOfFrames)
+        let frameDuration = Double(1/ShakeyBellViewConstants.numberOfFrames)
         
         imageView.setAnchorPoint(CGPoint(x: 0.5, y: yOffset))
         
