@@ -13,4 +13,8 @@ enum Styles {
     enum Images {
         static let bell = UIImage(systemName: "bell.fill")!
     }
+    
+    enum DateFormat {
+        static let main = "MMM d, yyyy hh:mm:a"
+    }
 }

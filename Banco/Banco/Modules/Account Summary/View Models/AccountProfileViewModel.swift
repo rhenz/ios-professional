@@ -53,14 +53,27 @@ struct AccountProfileViewModel {
     
     var date: String {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MMM d, yyyy hh:mm:a"
+        dateFormatter.dateFormat = Styles.DateFormat.main
         return dateFormatter.string(from: Date())
     }
     
     var welcomeMessage: String {
         let hour = Calendar.current.component(.hour, from: Date())
-        
-        return TimeOfDay(hour).greeting
+        return timeOfDayGreeting(hour)
+    }
+    
+    // MARK: - Helper Method
+    private func timeOfDayGreeting(_ hour: Int) -> String {
+        switch hour {
+        case 0..<12:
+            return "Good Morning,"
+        case 12..<16:
+            return "Good Afternoon,"
+        case 16..<24:
+            return "Good Evening,"
+        default:
+            return "Unknown Time"
+        }
     }
 }
 

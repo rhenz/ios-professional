@@ -11,6 +11,12 @@
 		C9006592284497FD0057355F /* BankAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9006591284497FD0057355F /* BankAccountViewModel.swift */; };
 		C9006595284499140057355F /* BankAccountProfileRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9006594284499140057355F /* BankAccountProfileRepresentable.swift */; };
 		C9006597284499AE0057355F /* AccountSummaryHeaderRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9006596284499AE0057355F /* AccountSummaryHeaderRepresentable.swift */; };
+		C900659B2844A91C0057355F /* AccountProfileViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C900659A2844A91C0057355F /* AccountProfileViewModelTests.swift */; };
+		C900659D2844A9580057355F /* profile.json in Resources */ = {isa = PBXBuildFile; fileRef = C900659C2844A9580057355F /* profile.json */; };
+		C90065A02844A9840057355F /* XCTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C900659F2844A9840057355F /* XCTest.swift */; };
+		C90065A22844AE250057355F /* BankAccountsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90065A12844AE250057355F /* BankAccountsViewModelTests.swift */; };
+		C90065A62844AE880057355F /* bankAccounts.json in Resources */ = {isa = PBXBuildFile; fileRef = C90065A52844AE880057355F /* bankAccounts.json */; };
+		C90065A82844B07A0057355F /* BankAccountViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90065A72844B07A0057355F /* BankAccountViewModelTests.swift */; };
 		C9064D9A282831B70069C5ED /* DummyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9064D99282831B60069C5ED /* DummyViewController.swift */; };
 		C9214DF328204D980099FEF2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9214DF228204D980099FEF2 /* AppDelegate.swift */; };
 		C9214DF728204D980099FEF2 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9214DF628204D980099FEF2 /* LoginViewController.swift */; };
@@ -60,6 +66,12 @@
 		C9006591284497FD0057355F /* BankAccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankAccountViewModel.swift; sourceTree = "<group>"; };
 		C9006594284499140057355F /* BankAccountProfileRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankAccountProfileRepresentable.swift; sourceTree = "<group>"; };
 		C9006596284499AE0057355F /* AccountSummaryHeaderRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSummaryHeaderRepresentable.swift; sourceTree = "<group>"; };
+		C900659A2844A91C0057355F /* AccountProfileViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountProfileViewModelTests.swift; sourceTree = "<group>"; };
+		C900659C2844A9580057355F /* profile.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = profile.json; sourceTree = "<group>"; };
+		C900659F2844A9840057355F /* XCTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTest.swift; sourceTree = "<group>"; };
+		C90065A12844AE250057355F /* BankAccountsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankAccountsViewModelTests.swift; sourceTree = "<group>"; };
+		C90065A52844AE880057355F /* bankAccounts.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = bankAccounts.json; sourceTree = "<group>"; };
+		C90065A72844B07A0057355F /* BankAccountViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankAccountViewModelTests.swift; sourceTree = "<group>"; };
 		C9064D99282831B60069C5ED /* DummyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyViewController.swift; sourceTree = "<group>"; };
 		C9214DEF28204D980099FEF2 /* Banco.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Banco.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9214DF228204D980099FEF2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -122,6 +134,34 @@
 				C9006596284499AE0057355F /* AccountSummaryHeaderRepresentable.swift */,
 			);
 			path = Protocols;
+			sourceTree = "<group>";
+		};
+		C90065982844A8400057355F /* Test Cases */ = {
+			isa = PBXGroup;
+			children = (
+				C9F8D4672833F0C4007BAE84 /* CurrencyFormatterTest.swift */,
+				C900659A2844A91C0057355F /* AccountProfileViewModelTests.swift */,
+				C90065A12844AE250057355F /* BankAccountsViewModelTests.swift */,
+				C90065A72844B07A0057355F /* BankAccountViewModelTests.swift */,
+			);
+			path = "Test Cases";
+			sourceTree = "<group>";
+		};
+		C90065992844A8F70057355F /* Stubs */ = {
+			isa = PBXGroup;
+			children = (
+				C900659C2844A9580057355F /* profile.json */,
+				C90065A52844AE880057355F /* bankAccounts.json */,
+			);
+			path = Stubs;
+			sourceTree = "<group>";
+		};
+		C900659E2844A9780057355F /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				C900659F2844A9840057355F /* XCTest.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		C9214DE628204D980099FEF2 = {
@@ -309,7 +349,9 @@
 		C9F8D45F2833F020007BAE84 /* BancoUnitTests */ = {
 			isa = PBXGroup;
 			children = (
-				C9F8D4672833F0C4007BAE84 /* CurrencyFormatterTest.swift */,
+				C90065992844A8F70057355F /* Stubs */,
+				C900659E2844A9780057355F /* Extensions */,
+				C90065982844A8400057355F /* Test Cases */,
 			);
 			path = BancoUnitTests;
 			sourceTree = "<group>";
@@ -452,6 +494,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C900659D2844A9580057355F /* profile.json in Resources */,
+				C90065A62844AE880057355F /* bankAccounts.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -501,7 +545,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C90065A22844AE250057355F /* BankAccountsViewModelTests.swift in Sources */,
+				C900659B2844A91C0057355F /* AccountProfileViewModelTests.swift in Sources */,
+				C90065A82844B07A0057355F /* BankAccountViewModelTests.swift in Sources */,
 				C9F8D4682833F0C4007BAE84 /* CurrencyFormatterTest.swift in Sources */,
+				C90065A02844A9840057355F /* XCTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
