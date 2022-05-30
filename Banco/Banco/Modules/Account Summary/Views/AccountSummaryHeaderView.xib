@@ -12,6 +12,8 @@
             <connections>
                 <outlet property="contentView" destination="9Yv-Gu-b0e" id="JxN-Nl-X81"/>
                 <outlet property="dateLabel" destination="g5v-Ul-aA5" id="Wga-WN-grx"/>
+                <outlet property="nameLabel" destination="CGs-Qf-R4D" id="Ff0-mV-d9d"/>
+                <outlet property="welcomeLabel" destination="OMX-4C-O48" id="j4H-Hg-doS"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>

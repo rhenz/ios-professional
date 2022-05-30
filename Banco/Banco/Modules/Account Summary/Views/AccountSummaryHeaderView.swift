@@ -10,10 +10,20 @@ import UIKit
 class AccountSummaryHeaderView: UIView {
     // MARK: - IBOutlets
     @IBOutlet var contentView: UIView!
+    @IBOutlet weak var welcomeLabel: UILabel!
+    @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     
     // MARK: - Properties
     let shakeyBellView = ShakeyBellView()
+    
+    private var activityIndicatorView: UIActivityIndicatorView = {
+        let activityIndicator = UIActivityIndicatorView()
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.startAnimating()
+        return activityIndicator
+    }()
+    
     
     // MARK: - Init
     override init(frame: CGRect) {
@@ -55,10 +65,24 @@ class AccountSummaryHeaderView: UIView {
             shakeyBellView.trailingAnchor.constraint(equalTo: trailingAnchor),
             shakeyBellView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
-    }
-    
-    private func setupShakeyBell() {
         
+        // Add Activity Indicator
+        addSubview(activityIndicatorView)
+        activityIndicatorView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            activityIndicatorView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            activityIndicatorView.centerYAnchor.constraint(equalTo: self.centerYAnchor)
+        ])
     }
-    
+        
+    // MARK: - Public API
+    func configureHeaderView(with representable: AccountSummaryRepresentable) {
+        // Hide activity indicator
+        activityIndicatorView.isHidden = true
+        
+        welcomeLabel.text = representable.welcomeMessage
+        nameLabel.text = representable.name
+        dateLabel.text = representable.date
+    }
 }

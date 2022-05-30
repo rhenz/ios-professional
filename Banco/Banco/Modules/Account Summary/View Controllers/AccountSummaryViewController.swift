@@ -7,24 +7,55 @@
 
 import UIKit
 
+
+
 class AccountSummaryViewController: UIViewController {
     
-    // MARK: - 
-    struct Profile {
-        let firstName: String
-        let lastName: String
+    // MARK: - Properties
+    
+    private var accounts: [AccountSummaryCell.ViewModel] = []
+    private let tableView = UITableView()
+    
+    private var shakeBellTimer: Timer? = nil
+    
+    private var shakeyBellView: ShakeyBellView {
+        accountSummaryHeaderView.shakeyBellView
     }
     
-    // MARK: - Properties
-    var profile: Profile?
-    var accounts: [AccountSummaryCell.ViewModel] = []
-    private let tableView = UITableView()
+    
+    private var accountSummaryHeaderView = AccountSummaryHeaderView() {
+        didSet {
+            accountSummaryHeaderView.isHidden = true
+        }
+    }
+    
+    var accountProfileViewModel: AccountProfileViewModel? {
+        didSet {
+            if let accountSummaryHeaderViewModel = accountProfileViewModel {
+                setupAccountHeaderView(with: accountSummaryHeaderViewModel)
+            }
+        }
+    }
+    
+    var bankAccountsProfileViewModel: BankAccountsProfileViewModel? {
+        didSet {
+            if let bankAccountsProfileViewModel = bankAccountsProfileViewModel {
+                setupBankAccountsViewModel(with: bankAccountsProfileViewModel)
+            }
+        }
+    }
+    
+    private lazy var activityIndicatorView: UIActivityIndicatorView = {
+        let activityIndicatorView = UIActivityIndicatorView()
+        activityIndicatorView.startAnimating()
+        activityIndicatorView.hidesWhenStopped = true
+        return activityIndicatorView
+    }()
     
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
-        fetchData()
     }
     
     // MARK: - Helper Methods
@@ -47,6 +78,7 @@ class AccountSummaryViewController: UIViewController {
         tableView.register(AccountSummaryCell.self, forCellReuseIdentifier: AccountSummaryCell.cellIdentifier)
         tableView.rowHeight = AccountSummaryCell.rowHeight
         tableView.tableFooterView = UIView()
+        tableView.isHidden = true
         
         tableView.dataSource = self
         tableView.delegate = self
@@ -60,16 +92,56 @@ class AccountSummaryViewController: UIViewController {
             tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
+        
+        // Add Activity Indicator on top of Table View
+        activityIndicatorView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(activityIndicatorView)
+        
+        NSLayoutConstraint.activate([
+            activityIndicatorView.centerXAnchor.constraint(equalTo: tableView.centerXAnchor),
+            activityIndicatorView.centerYAnchor.constraint(equalTo: tableView.centerYAnchor)
+        ])
     }
     
     private func setupTableHeaderView() {
-        let header = AccountSummaryHeaderView()
-        header.dateLabel.text = Date().formatted(date: .abbreviated, time: .standard)
+        accountSummaryHeaderView = AccountSummaryHeaderView()
         
-        var size = header.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
+        var size = accountSummaryHeaderView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
         size.width = UIScreen.main.bounds.width
-        header.frame.size = size
-        tableView.tableHeaderView = header
+        accountSummaryHeaderView.frame.size = size
+        tableView.tableHeaderView = accountSummaryHeaderView
+        
+        // Set Delegate
+        shakeyBellView.delegate = self
+        
+        // Shake Bell View
+        shakeBellTimer = Timer.scheduledTimer(timeInterval: 1.5, target: self, selector: #selector(shakeBellView), userInfo: nil, repeats: true)
+    }
+    
+    @objc private func shakeBellView() {
+        shakeyBellView.shakeBell()
+    }
+    
+    private func setupAccountHeaderView(with viewModel: AccountProfileViewModel) {
+        accountSummaryHeaderView.configureHeaderView(with: viewModel)
+        accountSummaryHeaderView.isHidden = false
+    }
+    
+    private func setupBankAccountsViewModel(with viewModel: BankAccountsProfileViewModel) {
+        // Stop Animating
+        activityIndicatorView.stopAnimating()
+        
+        // Reload Table View
+        tableView.reloadData()
+        tableView.isHidden = false
+    }
+}
+
+// MARK: -
+extension AccountSummaryViewController: ShakeyBellViewDelegate {
+    func didTapBell() {
+        // Stop shaking bell
+        shakeBellTimer?.invalidate()
     }
 }
 
@@ -84,7 +156,7 @@ extension AccountSummaryViewController {
 // MARK: - Table view data source
 extension AccountSummaryViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return accounts.count
+        return bankAccountsProfileViewModel?.numberOfBankAccountProfile ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -93,7 +165,9 @@ extension AccountSummaryViewController: UITableViewDataSource {
         }
         
         // Configure Cell
-        cell.configure(with: accounts[indexPath.item])
+        if let viewModel = bankAccountsProfileViewModel?.viewModel(for: indexPath.item) {
+            cell.configure(with: viewModel)
+        }
         
         return cell
     }
@@ -103,45 +177,5 @@ extension AccountSummaryViewController: UITableViewDataSource {
 extension AccountSummaryViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-    }
-}
-
-// MARK: - Networking
-extension AccountSummaryViewController {
-    private func fetchData() {
-        fetchAccounts()
-        fetchProfile()
-    }
-    
-    private func fetchAccounts() {
-        let savings = AccountSummaryCell.ViewModel(accountType: .banking,
-                                                            accountName: "Basic Savings",
-                                                        balance: 929466.23)
-        let chequing = AccountSummaryCell.ViewModel(accountType: .banking,
-                                                    accountName: "No-Fee All-In Chequing",
-                                                    balance: 17562.44)
-        let visa = AccountSummaryCell.ViewModel(accountType: .creditCard,
-                                                       accountName: "Visa Avion Card",
-                                                       balance: 412.83)
-        let masterCard = AccountSummaryCell.ViewModel(accountType: .creditCard,
-                                                       accountName: "Student Mastercard",
-                                                       balance: 50.83)
-        let investment1 = AccountSummaryCell.ViewModel(accountType: .investment,
-                                                       accountName: "Tax-Free Saver",
-                                                       balance: 2000.00)
-        let investment2 = AccountSummaryCell.ViewModel(accountType: .investment,
-                                                       accountName: "Growth Fund",
-                                                       balance: 15000.00)
-        
-        accounts.append(savings)
-        accounts.append(chequing)
-        accounts.append(visa)
-        accounts.append(masterCard)
-        accounts.append(investment1)
-        accounts.append(investment2)
-    }
-    
-    private func fetchProfile() {
-        profile = Profile(firstName: "John", lastName: "Lucas")
     }
 }

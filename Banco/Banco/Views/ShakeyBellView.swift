@@ -7,12 +7,18 @@
 
 import UIKit
 
+protocol ShakeyBellViewDelegate: AnyObject {
+    func didTapBell()
+}
+
 class ShakeyBellView: UIView {
     
     // MARK: - Properties
     let imageView = UIImageView()
     let buttonView = UIButton()
     let buttonHeight: CGFloat = 16
+    
+    weak var delegate: ShakeyBellViewDelegate?
     
     override var intrinsicContentSize: CGSize {
         return CGSize(width: 48, height: 48)
@@ -87,7 +93,7 @@ fileprivate enum ShakeyBellViewConstants {
 }
 extension ShakeyBellView {
     @objc func imageViewTapped(_ recognizer: UITapGestureRecognizer) {
-        shakeWith(duration: ShakeyBellViewConstants.duration, angle: ShakeyBellViewConstants.endAngle, yOffset: 0.0)
+        delegate?.didTapBell()
     }
     
     private func shakeWith(duration: Double, angle: CGFloat, yOffset: CGFloat) {
@@ -97,33 +103,37 @@ extension ShakeyBellView {
         
         UIView.animateKeyframes(withDuration: duration, delay: 0, options: [],
                                 animations: {
+            
             UIView.addKeyframe(withRelativeStartTime: 0.0,
                                relativeDuration: frameDuration) {
                 self.imageView.transform = CGAffineTransform(rotationAngle: -angle)
             }
+            
             UIView.addKeyframe(withRelativeStartTime: frameDuration,
                                relativeDuration: frameDuration) {
                 self.imageView.transform = CGAffineTransform(rotationAngle: +angle)
             }
-            UIView.addKeyframe(withRelativeStartTime: frameDuration*2,
+            
+            UIView.addKeyframe(withRelativeStartTime: frameDuration * 2,
                                relativeDuration: frameDuration) {
                 self.imageView.transform = CGAffineTransform(rotationAngle: -angle)
             }
-            UIView.addKeyframe(withRelativeStartTime: frameDuration*3,
+            
+            UIView.addKeyframe(withRelativeStartTime: frameDuration * 3,
                                relativeDuration: frameDuration) {
                 self.imageView.transform = CGAffineTransform(rotationAngle: +angle)
             }
-            UIView.addKeyframe(withRelativeStartTime: frameDuration*4,
+            
+            UIView.addKeyframe(withRelativeStartTime: frameDuration * 4,
                                relativeDuration: frameDuration) {
                 self.imageView.transform = CGAffineTransform(rotationAngle: -angle)
             }
-            UIView.addKeyframe(withRelativeStartTime: frameDuration*5,
+            
+            UIView.addKeyframe(withRelativeStartTime: frameDuration * 5,
                                relativeDuration: frameDuration) {
                 self.imageView.transform = CGAffineTransform.identity
             }
-        },
-                                completion: nil
-        )
+        })
     }
 }
 
@@ -146,5 +156,13 @@ extension UIView {
         
         layer.position = position
         layer.anchorPoint = point
+    }
+}
+
+
+// MARK: - Public API
+extension ShakeyBellView {
+    func shakeBell() {
+        shakeWith(duration: ShakeyBellViewConstants.duration, angle: ShakeyBellViewConstants.endAngle, yOffset: 0.0)
     }
 }

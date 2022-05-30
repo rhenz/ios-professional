@@ -9,11 +9,7 @@ import UIKit
 
 class AccountSummaryCell: UITableViewCell {
     
-    enum AccountType: String {
-        case banking = "Banking"
-        case creditCard = "Credit Card"
-        case investment = "Investment"
-    }
+    
     
     struct ViewModel {
         let accountType: AccountType
@@ -151,12 +147,12 @@ extension AccountSummaryCell {
 
 // MARK: -
 extension AccountSummaryCell {
-    func configure(with vm: ViewModel) {
-        typeLabel.text = vm.accountType.rawValue
-        nameLabel.text = vm.accountName
-        balanceAmountLabel.attributedText = vm.balanceAsAttributedString
+    func configure(with representable: BankAccountProfileRepresentable) {
+        typeLabel.text = representable.type.rawValue
+        nameLabel.text = representable.name
+        balanceAmountLabel.attributedText = representable.balanceAsAttributedString
         
-        switch vm.accountType {
+        switch representable.type {
         case .banking:
             underlineView.backgroundColor = appColor
             balanceLabel.text = "Current Balance"

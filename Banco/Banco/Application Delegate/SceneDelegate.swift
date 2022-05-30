@@ -15,7 +15,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     let onboardingViewController = OnboardingContainerViewController()
     let loginViewController = LoginViewController()
-    let mainViewController = MainViewController()
+    
+    private lazy var mainViewController: MainViewController = {
+        let mainVC = MainViewController()
+        
+        // Initialize View Model
+        let mainViewModel = MainViewModel(networkService: NetworkManager())
+        
+        // Configure Main View Controller
+        mainVC.viewModel = mainViewModel
+        
+        return mainVC
+    }()
     
     // MARK: -
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
