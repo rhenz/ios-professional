@@ -7,6 +7,9 @@
 
 import UIKit
 
+protocol AccountSummaryViewControllerDelegate: AnyObject {
+    func controllerDidRefresh(_ controller: AccountSummaryViewController)
+}
 
 
 class AccountSummaryViewController: UIViewController {
@@ -17,6 +20,8 @@ class AccountSummaryViewController: UIViewController {
     private let tableView = UITableView()
     
     private var shakeBellTimer: Timer? = nil
+    
+    weak var delegate: AccountSummaryViewControllerDelegate?
     
     private var shakeyBellView: ShakeyBellView {
         accountSummaryHeaderView.shakeyBellView
@@ -31,6 +36,9 @@ class AccountSummaryViewController: UIViewController {
     
     var accountProfileViewModel: AccountProfileViewModel? {
         didSet {
+            // Hide Refresh Control
+            refreshControl.endRefreshing()
+            
             if let accountSummaryHeaderViewModel = accountProfileViewModel {
                 setupAccountHeaderView(with: accountSummaryHeaderViewModel)
             }
@@ -39,6 +47,9 @@ class AccountSummaryViewController: UIViewController {
     
     var bankAccountsProfileViewModel: BankAccountsProfileViewModel? {
         didSet {
+            // Hide Refresh Control
+            refreshControl.endRefreshing()
+            
             if let bankAccountsProfileViewModel = bankAccountsProfileViewModel {
                 setupBankAccountsViewModel(with: bankAccountsProfileViewModel)
             }
@@ -50,6 +61,17 @@ class AccountSummaryViewController: UIViewController {
         activityIndicatorView.startAnimating()
         activityIndicatorView.hidesWhenStopped = true
         return activityIndicatorView
+    }()
+    
+    private lazy var refreshControl: UIRefreshControl = {
+        // Initialize Refresh Control
+        let refreshControl = UIRefreshControl()
+        
+        // Configure Refresh Control
+        refreshControl.tintColor = UIColor.systemGray
+        refreshControl.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
+        
+        return refreshControl
     }()
     
     // MARK: - View Life Cycle
@@ -110,6 +132,7 @@ class AccountSummaryViewController: UIViewController {
         size.width = UIScreen.main.bounds.width
         accountSummaryHeaderView.frame.size = size
         tableView.tableHeaderView = accountSummaryHeaderView
+        tableView.refreshControl = refreshControl
         
         // Set Delegate
         shakeyBellView.delegate = self
@@ -150,6 +173,11 @@ extension AccountSummaryViewController: ShakeyBellViewDelegate {
 extension AccountSummaryViewController {
     @objc private func logoutTapped(_ sender: UIBarButtonItem) {
         NotificationCenter.default.post(name: .logout, object: nil)
+    }
+    
+    @objc func refresh(_ sender: UIRefreshControl) {
+        // Notify Delegate
+        delegate?.controllerDidRefresh(self)
     }
 }
 

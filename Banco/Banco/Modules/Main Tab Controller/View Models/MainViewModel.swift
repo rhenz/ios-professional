@@ -15,12 +15,17 @@ class MainViewModel: NSObject {
         case other(Error)
     }
     
+    enum FetchBankAccountsError: Error {
+        case noBankAccountsAvailable
+        case other(Error)
+    }
+    
     // MARK: - Properties
     var networkService: NetworkService
     
     // MARK: - Type Aliases
     typealias FetchUserProfileCompletion = (Result<Profile, FetchProfileError>) -> Void
-    typealias FetchBankAccountProfileCompletion = (Result<[BankAccountProfile], FetchProfileError>) -> Void
+    typealias FetchBankAccountProfileCompletion = (Result<[BankAccountProfile], FetchBankAccountsError>) -> Void
     
     var didFetchUserProfile: FetchUserProfileCompletion?
     var didFetchBankAccountProfile: FetchBankAccountProfileCompletion?
@@ -31,6 +36,15 @@ class MainViewModel: NSObject {
         
         super.init()
         
+        // Fetch Profile Data
+        fetchUserProfile()
+        
+        // Fetch Bank Account profile
+        fetchBankAccountProfile()
+    }
+    
+    // MARK: - Public API
+    func refresh() {
         // Fetch Profile Data
         fetchUserProfile()
         
@@ -88,7 +102,7 @@ class MainViewModel: NSObject {
                 if let error = error {
                     print("Unable to fetch Bank Account Profile: \(error)")
                     
-                    self?.didFetchBankAccountProfile?(.failure(.noProfileDataAvailable))
+                    self?.didFetchBankAccountProfile?(.failure(.noBankAccountsAvailable))
                 } else if let data = data {
                     // Initialize JSON Decoder
                     let decoder = JSONDecoder()
@@ -105,7 +119,7 @@ class MainViewModel: NSObject {
                     }
                 } else {
                     // Invoke Completion Handler
-                    self?.didFetchBankAccountProfile?(.failure(.noProfileDataAvailable))
+                    self?.didFetchBankAccountProfile?(.failure(.noBankAccountsAvailable))
                 }
             }
         }

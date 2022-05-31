@@ -8,6 +8,12 @@
 import UIKit
 
 class MainViewController: UITabBarController {
+    
+    // MARK: - Types
+    enum AlertTypes {
+        case failedToFetchProfile
+        case failedToFetchBankAccounts
+    }
 
     // MARK: - Properties
     var viewModel: MainViewModel? {
@@ -20,6 +26,7 @@ class MainViewController: UITabBarController {
     
     private lazy var accountSummaryVC: AccountSummaryViewController = {
         let accountSummaryVC = AccountSummaryViewController()
+        accountSummaryVC.delegate = self
         return accountSummaryVC
     }()
     
@@ -59,19 +66,25 @@ class MainViewController: UITabBarController {
     
     private func setupViewModel(with viewModel: MainViewModel) {
         
+        var errors: [Error] = []
+        let dispatchGroup = DispatchGroup()
+        
+        
         // Fetch User Profile
+        dispatchGroup.enter()
         viewModel.didFetchUserProfile = { [weak self] result in
             switch result {
             case let .success(profile):
                 let accountSummaryHeaderViewModel = AccountProfileViewModel(profile: profile)
                 self?.accountSummaryVC.accountProfileViewModel = accountSummaryHeaderViewModel
             case let .failure(error):
-                // Present Alert
-                print(error)
+                errors.append(error)
             }
+            dispatchGroup.leave()
         }
         
         // Fetch Bank Account Profile
+        dispatchGroup.enter()
         viewModel.didFetchBankAccountProfile = { [weak self] result in
             switch result {
             case let .success(bankAccountProfiles):
@@ -79,9 +92,28 @@ class MainViewController: UITabBarController {
                 self?.accountSummaryVC.bankAccountsProfileViewModel = bankAccountsViewModel
             case let .failure(error):
                 // Present Alert
-                print(error)
+                errors.append(error)
             }
+            
+            dispatchGroup.leave()
         }
+        
+        
+        dispatchGroup.notify(queue: .main) { [weak self] in
+            // Present Alert if there's any
+            guard !errors.isEmpty else {
+                return
+            }
+
+            // There are some errors
+            self?.showErrorFetchAlert()
+        }
+    }
+    
+    private func showErrorFetchAlert() {
+        let ac = UIAlertController(title: "Server Error", message: "The application is unable to fetch profile and bank account data. Please make sure your device is connected over Wi-Fi or cellular.", preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "Ok", style: .default))
+        present(ac, animated: true)
     }
     
     private func hideNavigationBarLine(_ navigationBar: UINavigationBar) {
@@ -96,6 +128,13 @@ class MainViewController: UITabBarController {
         tabBar.isTranslucent = true
     }
     
+}
+
+// For refreshing view models
+extension MainViewController: AccountSummaryViewControllerDelegate {
+    func controllerDidRefresh(_ controller: AccountSummaryViewController) {
+        viewModel?.refresh()
+    }
 }
 
 // MARK: - Dummy VCs
