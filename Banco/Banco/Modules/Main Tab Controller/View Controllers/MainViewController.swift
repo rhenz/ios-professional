@@ -47,6 +47,14 @@ class MainViewController: UITabBarController {
         setupTabBar()
     }
     
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // Invoke Fetch Data
+        viewModel?.refresh()
+    }
+    
     private func setupViews() {
         accountSummaryVC.setTabBarImage(imageName: "list.dash.header.rectangle", title: "Summary")
         moneyVC.setTabBarImage(imageName: "arrow.left.arrow.right", title: "Move Money")

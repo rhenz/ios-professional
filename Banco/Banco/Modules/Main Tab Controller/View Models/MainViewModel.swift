@@ -36,11 +36,11 @@ class MainViewModel: NSObject {
         
         super.init()
         
-        // Fetch Profile Data
-        fetchUserProfile()
-        
-        // Fetch Bank Account profile
-        fetchBankAccountProfile()
+//        // Fetch Profile Data
+//        fetchUserProfile()
+//
+//        // Fetch Bank Account profile
+//        fetchBankAccountProfile()
     }
     
     // MARK: - Public API

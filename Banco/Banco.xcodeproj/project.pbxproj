@@ -29,6 +29,8 @@
 		C94B8ADE282D6F240074A75E /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C94B8ADD282D6F240074A75E /* MainViewController.swift */; };
 		C96A0D95284481BC00C601A5 /* BankAccountProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96A0D94284481BC00C601A5 /* BankAccountProfile.swift */; };
 		C96A0D972844902500C601A5 /* BankAccountProfileRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96A0D962844902500C601A5 /* BankAccountProfileRequest.swift */; };
+		C97689FB284675F6005FAC2A /* MainViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97689FA284675F6005FAC2A /* MainViewModelTests.swift */; };
+		C97689FC28467A3B005FAC2A /* MockNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97689F628467570005FAC2A /* MockNetworkService.swift */; };
 		C984372A28315C9600633CA6 /* CurrencyFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C984372928315C9600633CA6 /* CurrencyFormatter.swift */; };
 		C99721F72843D67400BF90E9 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C99721F62843D67400BF90E9 /* NetworkManager.swift */; };
 		C99721FA2843D69F00BF90E9 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C99721F92843D69F00BF90E9 /* NetworkService.swift */; };
@@ -86,6 +88,8 @@
 		C94B8ADD282D6F240074A75E /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		C96A0D94284481BC00C601A5 /* BankAccountProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankAccountProfile.swift; sourceTree = "<group>"; };
 		C96A0D962844902500C601A5 /* BankAccountProfileRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankAccountProfileRequest.swift; sourceTree = "<group>"; };
+		C97689F628467570005FAC2A /* MockNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNetworkService.swift; sourceTree = "<group>"; };
+		C97689FA284675F6005FAC2A /* MainViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModelTests.swift; sourceTree = "<group>"; };
 		C984372928315C9600633CA6 /* CurrencyFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyFormatter.swift; sourceTree = "<group>"; };
 		C99721F62843D67400BF90E9 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		C99721F92843D69F00BF90E9 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
@@ -140,6 +144,7 @@
 			isa = PBXGroup;
 			children = (
 				C9F8D4672833F0C4007BAE84 /* CurrencyFormatterTest.swift */,
+				C97689FA284675F6005FAC2A /* MainViewModelTests.swift */,
 				C900659A2844A91C0057355F /* AccountProfileViewModelTests.swift */,
 				C90065A12844AE250057355F /* BankAccountsViewModelTests.swift */,
 				C90065A72844B07A0057355F /* BankAccountViewModelTests.swift */,
@@ -258,6 +263,14 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
+		C97689F528467564005FAC2A /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				C97689F628467570005FAC2A /* MockNetworkService.swift */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
 		C99721F42843BEA200BF90E9 /* View Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -349,6 +362,7 @@
 		C9F8D45F2833F020007BAE84 /* BancoUnitTests */ = {
 			isa = PBXGroup;
 			children = (
+				C97689F528467564005FAC2A /* Mocks */,
 				C90065992844A8F70057355F /* Stubs */,
 				C900659E2844A9780057355F /* Extensions */,
 				C90065982844A8400057355F /* Test Cases */,
@@ -546,8 +560,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				C90065A22844AE250057355F /* BankAccountsViewModelTests.swift in Sources */,
+				C97689FC28467A3B005FAC2A /* MockNetworkService.swift in Sources */,
 				C900659B2844A91C0057355F /* AccountProfileViewModelTests.swift in Sources */,
 				C90065A82844B07A0057355F /* BankAccountViewModelTests.swift in Sources */,
+				C97689FB284675F6005FAC2A /* MainViewModelTests.swift in Sources */,
 				C9F8D4682833F0C4007BAE84 /* CurrencyFormatterTest.swift in Sources */,
 				C90065A02844A9840057355F /* XCTest.swift in Sources */,
 			);
