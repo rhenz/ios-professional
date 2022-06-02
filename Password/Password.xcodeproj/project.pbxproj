@@ -14,6 +14,7 @@
 		C93DA9602847C05B00E7071F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C93DA95E2847C05B00E7071F /* LaunchScreen.storyboard */; };
 		C93DA96E2847C3B500E7071F /* PasswordTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93DA96D2847C3B500E7071F /* PasswordTextField.swift */; };
 		C93DA9702847CA7600E7071F /* TEST.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C93DA96F2847CA7600E7071F /* TEST.storyboard */; };
+		C9AB636828491F3500C60173 /* PasswordStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9AB636728491F3500C60173 /* PasswordStatusView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		C93DA9612847C05B00E7071F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = "Password/Supporting Files/Info.plist"; sourceTree = SOURCE_ROOT; };
 		C93DA96D2847C3B500E7071F /* PasswordTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordTextField.swift; sourceTree = "<group>"; };
 		C93DA96F2847CA7600E7071F /* TEST.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TEST.storyboard; sourceTree = "<group>"; };
+		C9AB636728491F3500C60173 /* PasswordStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordStatusView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +116,7 @@
 			isa = PBXGroup;
 			children = (
 				C93DA96D2847C3B500E7071F /* PasswordTextField.swift */,
+				C9AB636728491F3500C60173 /* PasswordStatusView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -192,6 +195,7 @@
 				C93DA9582847C05A00E7071F /* ViewController.swift in Sources */,
 				C93DA9542847C05A00E7071F /* AppDelegate.swift in Sources */,
 				C93DA96E2847C3B500E7071F /* PasswordTextField.swift in Sources */,
+				C9AB636828491F3500C60173 /* PasswordStatusView.swift in Sources */,
 				C93DA9562847C05A00E7071F /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

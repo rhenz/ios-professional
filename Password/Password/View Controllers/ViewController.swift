@@ -11,8 +11,10 @@ class ViewController: UIViewController {
     
     // MARK: - Properties
     
+    // MARK: -
     let passwordTextField = PasswordTextField()
-
+    let passwordStatusView = PasswordStatusView()
+    
     // MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +28,9 @@ extension ViewController {
         let _ = view.safeAreaLayoutGuide
         let margin = view.layoutMarginsGuide
         
-        let stackView = UIStackView(arrangedSubviews: [passwordTextField])
+        passwordStatusView.backgroundColor = .systemGray2.withAlphaComponent(0.1)
+        
+        let stackView = UIStackView(arrangedSubviews: [passwordTextField, passwordStatusView])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         stackView.spacing = 20

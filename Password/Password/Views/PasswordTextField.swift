@@ -29,7 +29,7 @@ class PasswordTextField: UIView {
         
         // Add Lock Image on left side
         let paddedView = UIView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
-        let lockImage = UIImage(systemName: "lock.fill")?.withTintColor(.systemBlue)
+        let lockImage = UIImage(systemName: "lock.fill")
         let lockImageView = UIImageView(image: lockImage)
         lockImageView.center = CGPoint(x: paddedView.frame.size.width / 2, y: paddedView.frame.size.height / 2)
         lockImageView.contentMode = .center
@@ -101,8 +101,6 @@ class PasswordTextField: UIView {
             dividerLineView.widthAnchor.constraint(equalTo: widthAnchor),
             dividerLineView.heightAnchor.constraint(equalToConstant: 1)
         ])
-        
-//        self.backgroundColor = .systemPink
     }
  
     // MARK: - Actions
