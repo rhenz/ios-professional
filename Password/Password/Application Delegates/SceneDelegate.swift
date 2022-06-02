@@ -16,16 +16,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
         // Initialize Window
-        self.window = UIWindow(windowScene: windowScene)
+        window = UIWindow(windowScene: windowScene)
+        window?.backgroundColor = .systemBackground
         
         // Initialize View Controller
-        let viewControler = UIViewController()
+        let viewControler = ViewController()
         
         // Set Root View Controller
-        self.window?.rootViewController = viewControler
+        window?.rootViewController = viewControler
         
         // Set Window Make Key and Visible
-        self.window?.makeKeyAndVisible()
+        window?.makeKeyAndVisible()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

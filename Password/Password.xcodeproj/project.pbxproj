@@ -12,6 +12,8 @@
 		C93DA9582847C05A00E7071F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93DA9572847C05A00E7071F /* ViewController.swift */; };
 		C93DA95D2847C05B00E7071F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C93DA95C2847C05B00E7071F /* Assets.xcassets */; };
 		C93DA9602847C05B00E7071F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C93DA95E2847C05B00E7071F /* LaunchScreen.storyboard */; };
+		C93DA96E2847C3B500E7071F /* PasswordTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93DA96D2847C3B500E7071F /* PasswordTextField.swift */; };
+		C93DA9702847CA7600E7071F /* TEST.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C93DA96F2847CA7600E7071F /* TEST.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		C93DA95C2847C05B00E7071F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C93DA95F2847C05B00E7071F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C93DA9612847C05B00E7071F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = "Password/Supporting Files/Info.plist"; sourceTree = SOURCE_ROOT; };
+		C93DA96D2847C3B500E7071F /* PasswordTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordTextField.swift; sourceTree = "<group>"; };
+		C93DA96F2847CA7600E7071F /* TEST.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TEST.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +59,7 @@
 			isa = PBXGroup;
 			children = (
 				C93DA9672847C06200E7071F /* Application Delegates */,
+				C93DA96C2847C38D00E7071F /* Views */,
 				C93DA9682847C09500E7071F /* View Controllers */,
 				C93DA9692847C09C00E7071F /* Storyboards */,
 				C93DA96A2847C0A300E7071F /* Resources */,
@@ -83,6 +88,7 @@
 		C93DA9692847C09C00E7071F /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
+				C93DA96F2847CA7600E7071F /* TEST.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -102,6 +108,14 @@
 				C93DA9612847C05B00E7071F /* Info.plist */,
 			);
 			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C93DA96C2847C38D00E7071F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C93DA96D2847C3B500E7071F /* PasswordTextField.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -162,6 +176,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C93DA9702847CA7600E7071F /* TEST.storyboard in Resources */,
 				C93DA9602847C05B00E7071F /* LaunchScreen.storyboard in Resources */,
 				C93DA95D2847C05B00E7071F /* Assets.xcassets in Resources */,
 			);
@@ -176,6 +191,7 @@
 			files = (
 				C93DA9582847C05A00E7071F /* ViewController.swift in Sources */,
 				C93DA9542847C05A00E7071F /* AppDelegate.swift in Sources */,
+				C93DA96E2847C3B500E7071F /* PasswordTextField.swift in Sources */,
 				C93DA9562847C05A00E7071F /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -320,7 +336,6 @@
 				INFOPLIST_FILE = "Password/Supporting Files/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -348,7 +363,6 @@
 				INFOPLIST_FILE = "Password/Supporting Files/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
