@@ -10,6 +10,11 @@ import UIKit
 class PasswordTextField: UIView {
     
     // MARK: - Init
+    var placeholder: String? {
+        didSet {
+            textField.placeholder = placeholder
+        }
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -24,7 +29,6 @@ class PasswordTextField: UIView {
     private lazy var textField: UITextField = {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.placeholder = "New password"
         textField.isSecureTextEntry = true
         
         // Add Lock Image on left side
