@@ -14,15 +14,17 @@ class ViewController: UIViewController {
     // MARK: -
     private var passwordStatusView = PasswordStatusView()
     
-    private var passwordTextField: PasswordTextField = {
+    private lazy var passwordTextField: PasswordTextField = {
         let textField = PasswordTextField()
         textField.placeholder = "New Password"
+        textField.setDelegate(self)
         return textField
     }()
     
-    private var confirmPasswordtextField: PasswordTextField = {
+    private lazy var confirmPasswordtextField: PasswordTextField = {
         let textField = PasswordTextField()
         textField.placeholder = "Re-enter new password"
+        textField.setDelegate(self)
         return textField
     }()
     
@@ -41,15 +43,17 @@ class ViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-            self.passwordStatusView.update(characterCriteria: .failed, uppercaseCriteria: .empty, lowercaseCriteria: .passed, digitCriteria: .passed, specialCharacterCriteria: .failed)
-        }
     }
     
     // MARK: - Actions
     @objc private func resetPasswordButtonTapped(_ sender: UIButton) {
         print("Reset Password Button Pressed")
+        
+        if passwordTextField.text != confirmPasswordtextField.text {
+            confirmPasswordtextField.showError("The Confirm Password confirmation does not match")
+        } else {
+            confirmPasswordtextField.hideErrorLabel()
+        }
     }
 }
 
@@ -80,3 +84,21 @@ extension ViewController {
     }
 }
 
+// MARK: - Textfield Delegate
+extension ViewController: UITextFieldDelegate, PasswordTextFieldDelegate {
+    func textfieldDidChange(_ textField: PasswordTextField) {
+        print("TEXT: \(textField.text)")
+        if textField === passwordTextField {
+            passwordStatusView.updateDisplay(textField.text)
+        }
+    }
+    
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField == passwordTextField.textField {
+            print("LOL")
+            passwordStatusView.checkEmptyResult()
+        }
+    }
+    
+}

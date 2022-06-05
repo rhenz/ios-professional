@@ -7,14 +7,18 @@
 
 import UIKit
 
+protocol PasswordTextFieldDelegate: AnyObject {
+    func textfieldDidChange(_ textField: PasswordTextField)
+}
+
 class PasswordTextField: UIView {
     
     // MARK: - Init
     var placeholder: String? {
-        didSet {
-            textField.placeholder = placeholder
-        }
+        didSet { textField.placeholder = placeholder }
     }
+    
+    private weak var passwordTextFieldDelegate: PasswordTextFieldDelegate?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -26,7 +30,7 @@ class PasswordTextField: UIView {
     }
     
     // MARK: -
-    private lazy var textField: UITextField = {
+    private(set) lazy var textField: UITextField = {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.isSecureTextEntry = true
@@ -43,6 +47,9 @@ class PasswordTextField: UIView {
         
         textField.rightView = showPasswordButton
         textField.rightViewMode = .always
+        
+        // Add Target - Custom Textfield Did Change Handler
+        textField.addTarget(self, action: #selector(handleTextFieldDidChange(_:)), for: .editingChanged)
         
         return textField
     }()
@@ -70,6 +77,7 @@ class PasswordTextField: UIView {
         label.numberOfLines = 2
         label.lineBreakMode = .byWordWrapping
         label.text = "Your password must meet the requirements below."
+        label.isHidden = true
         return label
     }()
     
@@ -82,6 +90,19 @@ class PasswordTextField: UIView {
         return ""
     }
     
+    func setDelegate(_ delegate: AnyObject?) {
+        textField.delegate = delegate as? UITextFieldDelegate
+        passwordTextFieldDelegate = delegate as? PasswordTextFieldDelegate
+    }
+    
+    func showError(_ errorMessage: String) {
+        errorLabel.text = errorMessage
+        errorLabel.isHidden = false
+    }
+    
+    func hideErrorLabel() {
+        errorLabel.isHidden = true
+    }
     
     // MARK: - Helper Methods
     
@@ -105,6 +126,11 @@ class PasswordTextField: UIView {
             dividerLineView.widthAnchor.constraint(equalTo: widthAnchor),
             dividerLineView.heightAnchor.constraint(equalToConstant: 1)
         ])
+    }
+    
+    @objc func handleTextFieldDidChange(_ textField: UITextField) {
+        // Handle event
+        passwordTextFieldDelegate?.textfieldDidChange(self)
     }
  
     // MARK: - Actions

@@ -61,6 +61,11 @@ class PasswordStatusView: UIView {
         return label
     }()
     
+    // MARK: -
+    
+    private var shouldResetCriteria: Bool = true
+    private var criteriaLabelViews: [CriteriaLabelView] = []
+    
     // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -70,9 +75,15 @@ class PasswordStatusView: UIView {
     required init?(coder: NSCoder) {
         fatalError("PasswordStatusView should not be initialized using init(coder:)")
     }
-    
     // MARK: -
     private func commonInit() {
+        
+        // Store Labels to array
+        criteriaLabelViews = [criteriaLabelViewDigit,
+                              criteriaLabelViewLowercaseLetter,
+                              criteriaLabelViewUppercaseLetter,
+                              criteriaLabelViewSpecialCharacter,
+                              criteriaLabelViewNumOfCharacters]
         
         // Setup background view with rounded corners
         backgroundColor = .systemGray5.withAlphaComponent(0.5)
@@ -219,4 +230,44 @@ fileprivate class CriteriaLabelView: UIView {
         ])
     }
     
+}
+
+// MARK: -
+
+extension PasswordStatusView {
+    func updateDisplay(_ text: String) {
+        let lengthAndNoSpaceMet = PasswordCriteria.lengthAndNoSpaceMet(text)
+        let uppercaseMet = PasswordCriteria.uppercaseMet(text)
+        let lowercaseMet = PasswordCriteria.lowercaseMet(text)
+        let digitsMet = PasswordCriteria.digitsMet(text)
+        let specialCharMet = PasswordCriteria.specialCharactersMet(text)
+        
+        
+        var characterCriteria: CriteriaResult = .empty
+        var uppercaseCriteria: CriteriaResult = .empty
+        var lowercaseCriteria: CriteriaResult = .empty
+        var digitCriteria: CriteriaResult = .empty
+        var specialCharacterCriteria: CriteriaResult = .empty
+        
+        if shouldResetCriteria {
+            characterCriteria = lengthAndNoSpaceMet ? .passed : .empty
+            uppercaseCriteria = uppercaseMet ? .passed : .empty
+            lowercaseCriteria = lowercaseMet ? .passed : .empty
+            digitCriteria = digitsMet ? .passed : .empty
+            specialCharacterCriteria = specialCharMet ? .passed : .empty
+        }
+        
+        
+        self.update(characterCriteria: characterCriteria, uppercaseCriteria: uppercaseCriteria, lowercaseCriteria: lowercaseCriteria, digitCriteria: digitCriteria, specialCharacterCriteria: specialCharacterCriteria)
+    }
+    
+    
+    // Change all empty result to X
+    func checkEmptyResult() {
+        for view in criteriaLabelViews {
+            if view.criteriaResult == .empty {
+                view.criteriaResult = .failed
+            }
+        }
+    }
 }
