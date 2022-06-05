@@ -53,6 +53,11 @@ class ViewController: UIViewController {
             confirmPasswordtextField.showError("The Confirm Password confirmation does not match")
         } else {
             confirmPasswordtextField.hideErrorLabel()
+            
+            // Proceed Reset Password
+            let ac = UIAlertController(title: "Reset Password", message: nil, preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "OK", style: .default))
+            present(ac, animated: true)
         }
     }
 }
@@ -96,8 +101,13 @@ extension ViewController: UITextFieldDelegate, PasswordTextFieldDelegate {
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         if textField == passwordTextField.textField {
-            print("LOL")
             passwordStatusView.checkEmptyResult()
+            
+            if !passwordStatusView.minimumCriteriaMet {
+                passwordTextField.showError("Minimum criteria requirement not met.")
+            } else {
+                passwordTextField.hideErrorLabel()
+            }
         }
     }
     

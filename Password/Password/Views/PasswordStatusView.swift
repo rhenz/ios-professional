@@ -66,6 +66,18 @@ class PasswordStatusView: UIView {
     private var shouldResetCriteria: Bool = true
     private var criteriaLabelViews: [CriteriaLabelView] = []
     
+    var minimumCriteriaMet: Bool {
+        var count = 0
+        
+        for i in 1..<criteriaLabelViews.count {
+            if criteriaLabelViews[i].criteriaResult == .passed {
+                count += 1
+            }
+        }
+        
+        return count >= 3 ? true : false
+    }
+    
     // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
